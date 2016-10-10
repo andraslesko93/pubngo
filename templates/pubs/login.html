@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block clear_block %}
+<style>
+input[type="text"]
+{
+		width:auto;
+}
+</style>
+<div class ="row">
+<div class ="col-xs-12">
+<div class="round-box" align = "center">
+        <h1>Login</h1>
+
+        <form id="login_form" method="post" action="/login/">
+            {% csrf_token %}
+            <strong>Username: </strong>
+            <br/>
+            <input type="text" name="username" value="" />
+            <br /> <br />
+            <strong>Password:</strong> 
+            <br/>
+            <input type="password" name="password" value="" />
+            <br />
+            <br />
+            <button type = "submit" class="btn btn-primary btn-basic">Login</button>
+        </form>
+		        
+</div>
+</div>
+</div>
+	{% if error_message %}
+		<div class ="row">
+			<div class ="col-xs-12">
+				<div class="round-box" align = "center" style="background:rgba(255,204,204,0.93);;">
+				<strong>{{error_message}}</strong>		
+				</div>
+			</div>
+		</div>
+	{%endif%}
+
+{% endblock %}
+

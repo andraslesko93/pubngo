@@ -1,0 +1,14 @@
+{% block body_block %}
+
+<p>Welcome to pubngo!</p>
+
+{%if user.is_authenticated%}
+	Hi {{user.username}}!
+	<br/>
+	<a href='/logout' >logout</a>
+{%else%}
+	Please <a href='/login' >login</a> or <a href='/register' >register</a>
+{%endif%}
+
+
+{% endblock %}

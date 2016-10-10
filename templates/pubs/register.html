@@ -1,14 +1,7 @@
 {% extends 'base.html' %}
-
-
+{% load staticfiles %}
 {% block clear_block %}
 {% if user.is_authenticated == False or registered == True%}
-<style>
-input[type="text"]
-{
-		width:auto;
-}
-</style>
 
 <div class="row" align="center">
 <div class="col-xs-12">
@@ -48,20 +41,13 @@ input[type="text"]
            <strong>Picture:</strong>
            <br/>       
 			
-		   <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
-		   <br/> <br/>	
-			<div>
-	            <label  class="btn btn-primary btn-basic-file" >
-	    			<i class="fa fa-folder-open-o" aria-hidden="true"></i>
-					<input type="file" id="uploadButton" name="local_picture" style="display: none;">
-				</label>
-			</div>		
+		   <input type="file" name="local_picture">
+			
+			<br/>
 			<br/>
 			I have read and understood the <a href="/terms_of_use">terms of use: </a>
 			<input type="checkbox" id= "id_accept_terms" name="accept_terms" >
 			<br/>
-			<br/>
-            <!-- Provide a button to click to submit the form. -->
             
             <button type = "submit" class="btn btn-primary btn-basic">Register</button>
         </form>
@@ -105,7 +91,7 @@ input[type="text"]
 {%endif%}
 
 {% block script_block %}
-<script src="{{ STATIC_URL }}js/onRegisterPage.js"></script>
+<script src="{%static "js/onRegisterPage.js" %}"></script>
 {%endblock%}
 
 {% endblock %}

@@ -1,13 +1,24 @@
-{% block body_block %}
+{% extends 'base.html' %}
 
+{% load staticfiles %}
+
+
+{% block body_block %}
 <p>Welcome to pubngo!</p>
 
 {%if user.is_authenticated%}
 	Hi {{user.username}}!
+	
+	{% if user.userprofile.picture_url %}
+		<br/>
+		<img src="{{user.userprofile.picture_url}}" width="100" height=auto/>
+	{% endif %}
 	<br/>
-	<a href='/logout' >logout</a>
+	<a href='/logout/' >logout</a>
 {%else%}
 	Please <a href='/login' >login</a> or <a href='/register' >register</a>
+	Or login with <a href = '{% url 'social:begin' 'facebook' %}?next={{ request.path }}'>Facebook</a>	
+	
 {%endif%}
 
 

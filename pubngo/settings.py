@@ -39,6 +39,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'pubs',
     'social.apps.django_app.default',
+    'easy_maps',
+    'geoposition',
+    'django_geoip',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -50,6 +53,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django_geoip.middleware.LocationMiddleware',
 )
 
 ROOT_URLCONF = 'pubngo.urls'
@@ -155,3 +159,6 @@ SOCIAL_AUTH_PIPELINE = (
         'social.pipeline.user.user_details',
         'pubs.pipeline.create_user_profile',
     )
+
+
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyBX9dRii8oC28l1h6GIZTvPt8nJYrYamAQ'

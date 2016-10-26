@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% load staticfiles %}
-
+{% load easy_maps_tags %}
 
 {% block body_block %}
+
 <p>Welcome to pubngo!</p>
 
 {%if user.is_authenticated%}
@@ -15,6 +16,52 @@
 	{% endif %}
 	<br/>
 	<a href='/logout/' >logout</a>
+	
+	<br/><br/>
+	
+    <div id="map_canvas" style="height:400px; width:800px;"></div>
+
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBX9dRii8oC28l1h6GIZTvPt8nJYrYamAQ"></script>
+	<script type="text/javascript"></script>
+	<script type="text/javascript">
+		var markers = [
+			['BME Building Q', 47.473458, 19.059893],
+			['BME Building I', 47.472665, 19.059880],
+			['BME Building R', 47.478788, 19.059352],
+			['BME Building E', 47.477649, 19.057699],
+			['BME Building K', 47.481576, 19.055790]
+		];
+		
+		function initializeMaps() {
+			
+			var myOptions = {
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				mapTypeControl: false
+			};
+			var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+			var infowindow = new google.maps.InfoWindow(); 
+			var marker, i;
+			var bounds = new google.maps.LatLngBounds();
+			for (i = 0; i < markers.length; i++) { 
+				var pos = new google.maps.LatLng(markers[i][1], markers[i][2]);
+				bounds.extend(pos);
+				marker = new google.maps.Marker({
+					position: pos,
+					map: map
+				});
+				google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					return function() {
+						infowindow.setContent(markers[i][0]);
+						infowindow.open(map, marker);
+					}
+				})(marker, i));
+			}
+			map.fitBounds(bounds);
+		}
+		
+		initializeMaps()
+	</script>
+	
 {%else%}
 	Please <a href='/login' >login</a> or <a href='/register' >register</a>
 	Or login with <a href = '{% url 'social:begin' 'facebook' %}?next={{ request.path }}'>Facebook</a>	

@@ -11,7 +11,6 @@
 
         <strong>You already registered to the system</strong>
         <a href="/">Please return to the homepage.</a><br />
-
         {% else %}
         <div class="round-box" align = "center">
 		<h2><strong>Registration</strong></h2>
@@ -91,7 +90,7 @@
 {%endif%}
 
 {% block script_block %}
-<script src="{%static "js/onRegisterPage.js" %}"></script>
+<script src="{%static 'js/onRegisterPage.js' %}"></script>
 {%endblock%}
 
 {% endblock %}

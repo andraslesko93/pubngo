@@ -1,8 +1,3 @@
-document.getElementById('uploadButton').onchange = function () {
-		  document.getElementById('uploadFile').placeholder=this.value;
-};
-
-
 document.getElementById('user_form').onchange = function () {
 	
 	var pw=document.getElementById('id_password');

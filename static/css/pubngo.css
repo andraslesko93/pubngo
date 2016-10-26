@@ -1,0 +1,14 @@
+#map_canvas {
+  margin: 5px 0;
+  padding: 0;
+  height: 93vh;
+  float: left;
+  width: 100%;
+  position: fixed;
+}
+
+
+#map-container{
+  width: 100%;
+  position: fixed;
+}

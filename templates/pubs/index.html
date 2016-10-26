@@ -1,35 +1,107 @@
 {% extends 'base.html' %}
 
 {% load staticfiles %}
-{% load easy_maps_tags %}
+
+{% block clear_block %}
+{%if user.is_authenticated == False%}
+	Please <a href='/login' >login</a> or <a href='/register' >register</a>
+		Or login with <a href = '{% url 'social:begin' 'facebook' %}?next={{ request.path }}'>Facebook</a>	
+{%endif%}
+{% endblock %}
 
 {% block body_block %}
+	{%if user.is_authenticated %}
+	<div align="center">
+		 <h4>Welcome {{user.username}}!</h4>
+		{% if user.userprofile.picture_url %}
+					<img src="{{user.userprofile.picture_url}}" height=85/>
+					<br/><br/>
+		{% endif %}
+		<a href="/logout/">Logout
+			<i class="fa fa-sign-out" id="rev-icon"></i>  
+		</a> 
+		<br/><br/>   
+	</div>
+      <!-- item list -->
+      <div class="panel panel-default">
+        <div class="panel-heading"><a href="">Baráti Kávézó</a></div>
+      </div>
+      <p>
+      <strong>Távolság:</strong>
+      <br/>
+      <strong>Sör ár:</strong>
+      <br/>
+      <strong>Hangulat: </strong><i>Beszélgetős</i>
+      </p>
+      
+      <hr>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading"><a href="">Gong café</a></div>
+      </div>
+      <p>
+      <strong>Távolság:</strong>
+      <br/>
+      <strong>Sör ár:</strong>
+      <br/>
+      <strong>Hangulat: </strong><i>Bulizós</i>
+      </p>
+      
+      <hr>
+       <div class="panel panel-default">
+        <div class="panel-heading"><a href="">Bölcső</a></div>
+      </div>
+      <p>      
+      <strong>Távolság:</strong>
+      <br/>
+      <strong>Sör ár:</strong>
+      <br/>
+      <strong>Hangulat: </strong><i>Beszélgetős</i>
+      </p>
+      <hr>
+            <div class="panel panel-default">
+        <div class="panel-heading"><a href="">Ördög gödör</a></div>
+      </div>
+      <p>
+      <strong>Távolság:</strong>
+      <br/>
+      <strong>Sör ár:</strong>
+      <br/>
+      <strong>Hangulat: </strong><i>Késdobáló</i>
+      </p>
+      
+      <hr>
+      <div class="panel panel-default">
+        <div class="panel-heading"><a href="">Andersen</a></div>
+      </div>
+      <p>      
+      <strong>Távolság:</strong>
+      <br/>
+      <strong>Sör ár:</strong>
+      <br/>
+      <strong>Hangulat: </strong><i>Beszélgetős</i>
+      </p>
+      <hr>
 
-<p>Welcome to pubngo!</p>
+	{%endif%}
+{% endblock %}
 
-{%if user.is_authenticated%}
-	Hi {{user.username}}!
-	
-	{% if user.userprofile.picture_url %}
-		<br/>
-		<img src="{{user.userprofile.picture_url}}" width="100" height=auto/>
-	{% endif %}
-	<br/>
-	<a href='/logout/' >logout</a>
-	
-	<br/><br/>
-	
-    <div id="map_canvas" style="height:400px; width:800px;"></div>
+
+{% block map_block %}
+{%if user.is_authenticated %}
+    <div id="map-container">
+    	<div id="map_canvas"></div>
+    </div>
 
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBX9dRii8oC28l1h6GIZTvPt8nJYrYamAQ"></script>
 	<script type="text/javascript"></script>
 	<script type="text/javascript">
 		var markers = [
-			['BME Building Q', 47.473458, 19.059893],
-			['BME Building I', 47.472665, 19.059880],
-			['BME Building R', 47.478788, 19.059352],
-			['BME Building E', 47.477649, 19.057699],
-			['BME Building K', 47.481576, 19.055790]
+			['Baráti kávézó', 47.5042817, 19.064201799999978],
+			['Gong café', 47.4993127, 19.07003450000002],
+			['Bölcső bar & food', 47.4772765, 19.05395390000001],
+			['Andersen pub', 47.4904009, 19.069585899999993],
+			['Ördög gödör', 47.5008524, 19.06876890000001],
 		];
 		
 		function initializeMaps() {
@@ -61,12 +133,5 @@
 		
 		initializeMaps()
 	</script>
-	
-{%else%}
-	Please <a href='/login' >login</a> or <a href='/register' >register</a>
-	Or login with <a href = '{% url 'social:begin' 'facebook' %}?next={{ request.path }}'>Facebook</a>	
-	
-{%endif%}
-
-
+	{%endif%}
 {% endblock %}

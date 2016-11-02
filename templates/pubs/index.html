@@ -4,8 +4,13 @@
 
 {% block clear_block %}
 {%if user.is_authenticated == False%}
-	Please <a href='/login' >login</a> or <a href='/register' >register</a>
-		Or login with <a href = '{% url 'social:begin' 'facebook' %}?next={{ request.path }}'>Facebook</a>	
+
+	<div class ="col-xs-12" align = "center">
+	<h2>Welcome PubNGo!</h2>
+	<h2>Please <a href='/login' >login</a> or <a href='/register' >register</a></h2>
+	<h2>Or login with <a href = '{% url 'social:begin' 'facebook' %}?next={{ request.path }}'>Facebook</a></h2>
+
+</div>	
 {%endif%}
 {% endblock %}
 

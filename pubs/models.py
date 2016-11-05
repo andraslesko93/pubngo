@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.db.models.fields.related import ManyToManyField
+from geoposition.fields import GeopositionField
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
@@ -29,11 +31,8 @@ class Rating(models.Model):
     price = models.IntegerField() #siman ft-ban egyenlore
     feeling = models.CharField(max_length = 10) #regexp arra, hogy kesdobalo//bulizos//beszelgetos
 
-class Location(models.Model): #mehet akar majd ra google maps-es cucc is
-    x_chord = models.FloatField()
-    y_chord = models.FloatField()
-    
+
 class Pub(models.Model):
     name = models.CharField(max_length = 150)
-    location = models.OneToOneField(Location)
+    position = GeopositionField()
     ratings = ManyToManyField(Rating)

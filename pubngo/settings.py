@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'pubs',
     'social.apps.django_app.default',
+    'geoposition'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -157,3 +158,4 @@ SOCIAL_AUTH_PIPELINE = (
         'pubs.pipeline.create_user_profile',
     )
 
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyBX9dRii8oC28l1h6GIZTvPt8nJYrYamAQ'

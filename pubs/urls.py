@@ -6,6 +6,7 @@ from django.conf import settings
 
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name="pubs/index.html"), name='index'),
+    url(r'^discover/$', views.post_current_position, name='discover'),
     url(r'^register/$', views.register, name='register'),
     url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', views.user_logout, name='logout'),

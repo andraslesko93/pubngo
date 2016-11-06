@@ -15,6 +15,7 @@
 {% endblock %}
 
 {% block body_block %}
+<div class="col-xs-5 col-md-4" id="left">
 	{%if user.is_authenticated %}
 	<div align="center">
 		 <h4>Welcome {{user.username}}!</h4>
@@ -87,55 +88,16 @@
       <strong>Hangulat: </strong><i>Beszélgetős</i>
       </p>
       <hr>
+</div>
 
-	{%endif%}
-{% endblock %}
-
-
-{% block map_block %}
-{%if user.is_authenticated %}
+<div class="col-xs-7 col-md-8" >
     <div id="map-container">
     	<div id="map_canvas"></div>
     </div>
+</div>
+{%endif%}
+{% endblock %}
 
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBX9dRii8oC28l1h6GIZTvPt8nJYrYamAQ"></script>
-	<script type="text/javascript">
-		var markers = [
-			['Baráti kávézó', 47.5042817, 19.064201799999978],
-			['Gong café', 47.4993127, 19.07003450000002],
-			['Bölcső bar & food', 47.4772765, 19.05395390000001],
-			['Andersen pub', 47.4904009, 19.069585899999993],
-			['Ördög gödör', 47.5008524, 19.06876890000001],
-		];
-		
-		function initializeMaps() {
-			
-			var myOptions = {
-				mapTypeId: google.maps.MapTypeId.ROADMAP,
-				mapTypeControl: false
-			};
-			var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
-			var infowindow = new google.maps.InfoWindow(); 
-			var marker, i;
-			var bounds = new google.maps.LatLngBounds();
-			for (i = 0; i < markers.length; i++) { 
-				var pos = new google.maps.LatLng(markers[i][1], markers[i][2]);
-				bounds.extend(pos);
-				marker = new google.maps.Marker({
-					position: pos,
-					map: map
-				});
-				google.maps.event.addListener(marker, 'click', (function(marker, i) {
-					return function() {
-						infowindow.setContent(markers[i][0]);
-						infowindow.open(map, marker);
-					}
-				})(marker, i));
-			}
-			map.fitBounds(bounds);
-		}
-		
-		initializeMaps()
-	</script>
-	{%endif%}
+{% block script_block %}
+	<script src="{%static 'js/onIndexPage.js' %}"></script>
 {% endblock %}

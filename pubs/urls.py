@@ -1,17 +1,18 @@
 from django.conf.urls import patterns, url
 from django.views.generic import TemplateView
-import views
+from views import get_pubs_by_preferences, post_current_position, discover, register, user_login, user_logout
 from django.conf import settings
 
 
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name="pubs/index.html"), name='index'),
-    url(r'^discover/$', views.post_current_position, name='discover'),
-    url(r'^register/$', views.register, name='register'),
-    url(r'^login/$', views.user_login, name='login'),
-    url(r'^logout/$', views.user_logout, name='logout'),
+    url(r'^recommender/$', get_pubs_by_preferences, name='discover'),
+    url(r'^post_current_position/', post_current_position, name='post_current_position'),
+    url(r'^discover/$', discover, name='discover'),
+    url(r'^register/$', register, name='register'),
+    url(r'^login/$', user_login, name='login'),
+    url(r'^logout/$', user_logout, name='logout'),
     url(r'^terms_of_use/$', TemplateView.as_view(template_name="pubs/terms_of_use.html"), name='terms_of_use'),
-    
     )
 
 if settings.DEBUG:

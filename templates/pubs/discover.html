@@ -2,37 +2,8 @@
 {% load staticfiles %}
 {% block body_block %}
     <div id="map_canvas"></div>
-	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add a new pub</button>
-	
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
-	  <div class="modal-dialog">
-	  
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Add a new pub at current location</h4>
-	      </div>
-	      <div class="modal-body">
-	      {% csrf_token %}
-	       <form id="addANewPub">
-	        <h4>Name of the pub: </h4>
-	      	<input type="text" name="pubName"><br>
-	      	<input type="hidden" id="lat" name="lat" value=23>
-	      	<input type="hidden" id ="lng" name="lng" value=29>
-	      </form>	
-	      </div>
-	      <div class="modal-footer">      
-	      <button type="submit"  form= "addANewPub" id="addANewPubButton" data-dismiss="modal" class="btn btn-primary">Add</button>
-	      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>	        
-	      </div>
-	    </div>
-	  </div>
-	</div>
 {% endblock %}
 
 {% block script_block %}
 	<script src="{%static 'js/onDiscoverPage.js' %}"></script>
-	<script src="{%static 'js/postCurrentPosition.js' %}"></script>
 {%endblock%}

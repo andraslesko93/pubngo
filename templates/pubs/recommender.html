@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block body_block %}
+<div class="col-xs-5 col-md-4" id="left">
+	{%if user.is_authenticated %}
+	
+	<h3>Here are some recommended pubs:</h3>
+	<p>Change your <a>preferences</a></p>
+	<br>
+	
+      <!-- item list -->
+      <div class="panel panel-default">
+        <div class="panel-heading"><a href="">Baráti Kávézó</a></div>
+      </div>
+      <p>
+      <strong>Távolság:</strong>
+      <br/>
+      <strong>Sör ár:</strong>
+      <br/>
+      <strong>Hangulat: </strong><i>Beszélgetős</i>
+      </p>
+      
+      <hr>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading"><a href="">Gong café</a></div>
+      </div>
+      <p>
+      <strong>Távolság:</strong>
+      <br/>
+      <strong>Sör ár:</strong>
+      <br/>
+      <strong>Hangulat: </strong><i>Bulizós</i>
+      </p>
+      
+      <hr>
+       <div class="panel panel-default">
+        <div class="panel-heading"><a href="">Bölcső</a></div>
+      </div>
+      <p>      
+      <strong>Távolság:</strong>
+      <br/>
+      <strong>Sör ár:</strong>
+      <br/>
+      <strong>Hangulat: </strong><i>Beszélgetős</i>
+      </p>
+      <hr>
+            <div class="panel panel-default">
+        <div class="panel-heading"><a href="">Ördög gödör</a></div>
+      </div>
+      <p>
+      <strong>Távolság:</strong>
+      <br/>
+      <strong>Sör ár:</strong>
+      <br/>
+      <strong>Hangulat: </strong><i>Késdobáló</i>
+      </p>
+      
+      <hr>
+      <div class="panel panel-default">
+        <div class="panel-heading"><a href="">Andersen</a></div>
+      </div>
+      <p>      
+      <strong>Távolság:</strong>
+      <br/>
+      <strong>Sör ár:</strong>
+      <br/>
+      <strong>Hangulat: </strong><i>Beszélgetős</i>
+      </p>
+      <hr>
+</div>
+
+<div class="col-xs-7 col-md-8" >
+    <div id="map-container">
+    	<div id="map_canvas"></div>
+    </div>
+</div>
+{%endif%}
+{% endblock %}
+
+{% block script_block %}
+	<script src="{%static 'js/onRecommenderPage.js' %}"></script>
+{% endblock %}

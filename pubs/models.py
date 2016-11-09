@@ -15,6 +15,11 @@ class Pub(models.Model):
     position = GeopositionField()
     ratings = ManyToManyField(Rating)
 
+class Checkins(models.Model):
+    user = models.ForeignKey(User)
+    pub = models.ForeignKey(Pub)
+    time = models.DateTimeField(blank = True, null=True)
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     local_picture = models.ImageField(upload_to='profile_images', blank=True, default='profile_images/default.png')

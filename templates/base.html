@@ -13,9 +13,6 @@
 	</head>
 	<body>
 	
-<script>
-getCurrentPosition();
-</script>
 {% block clear_block %}{% endblock %}
 <!-- begin template -->
 <div class="navbar navbar-custom navbar-fixed-top" >
@@ -77,10 +74,14 @@ getCurrentPosition();
 		<script src="{%static 'js/bootstrap.min.js' %}"></script>
 		<script src="{%static 'js/tether.min.js' %}"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBX9dRii8oC28l1h6GIZTvPt8nJYrYamAQ"></script>
-		<script src="{%static 'js/initializeMaps.js' %}"></script>
 		<script src="{%static 'js/handleLocationError.js' %}"></script>
 		<script src="{%static 'js/getCurrentPosition.js' %}"></script>
 		<script src="{%static 'js/postCurrentPosition.js' %}"></script>		
 		{% block script_block %} {% endblock %}
 	</body>
+<script>
+{%if user.is_authenticated %}
+getCurrentPosition();
+{%endif%}
+</script>
 </html>

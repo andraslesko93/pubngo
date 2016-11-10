@@ -19,7 +19,10 @@ $.when(getCurrentPosition()).then(function(data, textStatus, jqXHR) {
 	    	'pubName': formValues.pubName
 	    	},
 	    success: function (result) {
-	      console.log("OK");
+	      //console.log("OK");
+	      $('#addANewPub').hide();
+	      $('#addANewPubButton').hide();
+	      $('#newPubModal').append('<h4 style="color:green">You have successfully added a new pub! The admins will check it\'s validity, and then it will appear in the system. Thanks :)</h4> ');
 	      }
 	});	
 

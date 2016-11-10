@@ -50,7 +50,7 @@
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
 	        <h4 class="modal-title">Add a new pub at current location</h4>
 	      </div>
-	      <div class="modal-body">
+	      <div class="modal-body" id="newPubModal">
 	       <form id="addANewPub">
 	       {% csrf_token %}
 	        <h4>Name of the pub: </h4>
@@ -58,7 +58,7 @@
 	      </form>	
 	      </div>
 	      <div class="modal-footer">      
-	      <button type="reset" form= "addANewPub" id="addANewPubButton" data-dismiss="modal" onclick="postCurrentPosition()" class="btn btn-primary">Add</button>
+	      <button type="button" form= "addANewPub" id="addANewPubButton" onclick="postCurrentPosition()" class="btn btn-primary">Add</button>
 	      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>	        
 	      </div>
 	    </div>

@@ -10,7 +10,7 @@ var myOptions = {
 	mapTypeId: google.maps.MapTypeId.ROADMAP,
 	mapTypeControl: false
 };
-var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+var map = new google.maps.Map(document.getElementById("map_canvas_discover"),myOptions);
 var infoWindow = new google.maps.InfoWindow(); 
 var marker, i;
 var bounds = new google.maps.LatLngBounds();

@@ -1,4 +1,4 @@
-#map_canvas {
+#map_canvas_discover {
   padding: 0;
   height: 93vh;
 
@@ -6,6 +6,13 @@
   position: fixed;
 }
 
+#map_canvas_recommender {
+  padding: 0;
+  height: 93vh;
+
+  width: 100%;
+  position: fixed;
+}
 
 #map-container{
   width: 100%;

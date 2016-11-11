@@ -5,7 +5,7 @@ $.when(getCurrentPosition()).then(function(data, textStatus, jqXHR) {
     var button = $("#addANewPubButton");
 	console.log("clicked");
 	var formValues = {};
-	$.each($("form").serializeArray(), function (i, field) {
+	$.each($("#addANewPubForm").serializeArray(), function (i, field) {
 	    formValues[field.name] = field.value;
 	});
 	console.log(formValues);
@@ -20,7 +20,7 @@ $.when(getCurrentPosition()).then(function(data, textStatus, jqXHR) {
 	    	},
 	    success: function (result) {
 	      //console.log("OK");
-	      $('#addANewPub').hide();
+	      $('#addANewPubForm').hide();
 	      $('#addANewPubButton').hide();
 	      $('#newPubModal').append('<h4 style="color:green">You have successfully added a new pub! The admins will check it\'s validity, and then it will appear in the system. Thanks :)</h4> ');
 	      }

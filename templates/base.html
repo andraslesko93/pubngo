@@ -29,7 +29,7 @@
         <li class="active">
         <a href="/recommender">Recommender</a></li>
         <li><a href="/discover">Discover</a></li>
-        <li><a href="#">Check-in</a></li>
+        <li><a href="" data-toggle="modal" data-target="#checkInModal">Check-in</a></li>
 		<li><a href="" data-toggle="modal" data-target="#addANewPubModal">Add a new pub</a></li>
         <li>&nbsp;</li>
       </ul>
@@ -41,6 +41,7 @@
     {% block body_block %}{% endblock %}
   </div>
 </div>
+
 {%if user.is_authenticated %}
 <div class="modal fade" id="addANewPubModal" role="dialog">
 	  <div class="modal-dialog">
@@ -51,7 +52,7 @@
 	        <h4 class="modal-title">Add a new pub at current location</h4>
 	      </div>
 	      <div class="modal-body" id="newPubModal">
-	       <form id="addANewPub">
+	       <form id="addANewPubForm">
 	       {% csrf_token %}
 	        <h4>Name of the pub: </h4>
 	      	<input type="text" required pattern=".{1,30}"  title="1 to 30 characters" placeholder="The name of the pub" name="pubName"><br>
@@ -60,6 +61,34 @@
 	      <div class="modal-footer">      
 	      <button type="button" form= "addANewPub" id="addANewPubButton" onclick="postCurrentPosition()" class="btn btn-primary">Add</button>
 	      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>	        
+	      </div>
+	    </div>
+	  </div>
+</div>
+
+<div class="modal fade" id="checkInModal" role="dialog">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Check in</h4>
+	      </div>
+	      <div class="modal-body" id="checkInModal">
+	       <form id="checkInModalForm">
+	       {% csrf_token %}
+	        <h4>Choose from the nearby pubs: </h4>
+	        <div class="list-group">
+				<a href="#" class="list-group-item">These Boots Are Made For Walking</a>
+				<a href="#" class="list-group-item">Eleanor, Put Your Boots On</a>
+				<a href="#" class="list-group-item">Puss 'n' Boots</a>
+				<a href="#" class="list-group-item">Die With Your Boots On</a>
+				<a href="#" class="list-group-item">Fairies Wear Boots</a>
+			</div>
+	      </form>	
+	      </div>
+	      <div class="modal-footer">      
+		      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>	        
 	      </div>
 	    </div>
 	  </div>

@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% load staticfiles %}
-
 {% block clear_block %}
 {%if user.is_authenticated == False%}
 
@@ -14,23 +13,24 @@
 {%endif%}
 {% endblock %}
 
-{% block body_block %}
 {%if user.is_authenticated %}
-	<div align="center">
+{% block body_block %}
+	<div class="col-xs-12" align="center">
 		 <h4>Welcome {{user.username}}!</h4>
 		{% if user.userprofile.picture_url %}
 					<img src="{{user.userprofile.picture_url}}" height=85/>
 					<br/><br/>
 		{% endif %}
 		
-		<p>Todo: Valami szép szöveg, körítés ide esetleg valami háttér ennek az oldalnak, avagy átcsiszolni landing pagenek
-		<br> Továbbá Set user preferences link
-		
+		<h4>Please tell us what kind of pub are looking for:</h4>
+		<p>
+		Todo: Create a set user preferences form here. (Prefer ajax call)
+		<br/> 
 		</p>
 		<a href="/logout/">Logout
 			<i class="fa fa-sign-out"></i>  
 		</a> 
 		<br/><br/>   
 	</div>
-{% endif %}
 {% endblock %}
+{% endif %}

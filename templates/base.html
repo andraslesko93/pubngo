@@ -15,6 +15,7 @@
 	<body>
 	
 {% block clear_block %}{% endblock %}
+{%if user.is_authenticated %}
 <!-- begin template -->
 <div class="navbar navbar-custom navbar-fixed-top" >
  <div class="navbar-header"><a class="navbar-brand" href="/">PubNGo</a>
@@ -43,7 +44,6 @@
   </div>
 </div>
 
-{%if user.is_authenticated %}
 <div class="modal fade" id="addANewPubModal" role="dialog">
 	  <div class="modal-dialog">
 	    <!-- Modal content-->

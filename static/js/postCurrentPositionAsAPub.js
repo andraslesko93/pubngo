@@ -25,7 +25,7 @@ $.when(getCurrentPosition()).then(function(data, textStatus, jqXHR) {
 	    	'lng':data.coords.longitude,
 	    	'pubName': formValues.pubName
 	    	},
-	    success: function (result) {
+	    success: function () {
 	      //console.log("OK");
 	      var newAddANewPubSuccesMessage = $('<div id="addANewPubSuccesMessage"></div>')
 	      $('#addANewPubForm').hide();

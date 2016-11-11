@@ -30,7 +30,7 @@
         <li class="active">
         <a href="/recommender">Recommender</a></li>
         <li><a href="/discover">Discover</a></li>
-        <li><a href="" data-toggle="modal" data-target="#checkInModal">Check-in</a></li>
+        <li><a href="" data-toggle="modal" onclick="getNearbyPubs()" data-target="#checkInModal">Check-in</a></li>
 		<li><a href="" data-toggle="modal" data-target="#addANewPubModal">Add a new pub</a></li>
         <li>&nbsp;</li>
       </ul>
@@ -52,7 +52,7 @@
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
 	        <h4 class="modal-title">Add a new pub at current location</h4>
 	      </div>
-	      <div class="modal-body" id="newPubModal">
+	      <div class="modal-body">
 	       <form id="addANewPubForm">
 	       {% csrf_token %}
 	        <h4>Name of the pub: </h4>
@@ -76,19 +76,10 @@
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
 	        <h4 class="modal-title">Check in</h4>
 	      </div>
-	      <div class="modal-body" id="checkInModal">
-	       <form id="checkInForm">
-	       {% csrf_token %}
-	        <h4>Choose from the nearby pubs: </h4>
-	        <div class="list-group">
-				<a href="#" class="list-group-item">These Boots Are Made For Walking</a>
-				<a href="#" class="list-group-item">Eleanor, Put Your Boots On</a>
-				<a href="#" class="list-group-item">Puss 'n' Boots</a>
-				<a href="#" class="list-group-item">Die With Your Boots On</a>
-				<a href="#" class="list-group-item">Fairies Wear Boots</a>
-			</div>
-	      </form>	
-	      <div id="checkInSuccesMessage"></div>
+	      <div class="modal-body">
+	        <h4 id="checkinTitle">Choose from the nearby pubs: </h4>
+	        <div class="list-group" id="checkinList"></div>
+	      	<div id="checkinSuccesMessage"></div>
 	      </div>
 	      <div class="modal-footer">      
 		      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>	        
@@ -106,7 +97,9 @@
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBX9dRii8oC28l1h6GIZTvPt8nJYrYamAQ"></script>
 		<script src="{%static 'js/handleLocationError.js' %}"></script>
 		<script src="{%static 'js/getCurrentPosition.js' %}"></script>
-		<script src="{%static 'js/postCurrentPositionAsAPub.js' %}"></script>		
+		<script src="{%static 'js/postCurrentPositionAsAPub.js' %}"></script>
+		<script src="{%static 'js/getNearbyPubs.js' %}"></script>
+		<script src="{%static 'js/postCheckin.js' %}"></script>
 		{% block script_block %} {% endblock %}
 	</body>
 <script>
@@ -115,10 +108,13 @@ $('#addANewPubModal').on('hidden.bs.modal', function () {
 	$('#addANewPubSuccesMessage').hide();
 	$('#addANewPubForm').find("input[type=text], textarea").val("");
 	$('#addANewPubForm').show();
+	$('#addANewPubButton').show();
+	
 });
 
-
-
+$('#checkInModal').on('hidden.bs.modal', function () {
+	$('#checkinSuccesMessage').hide();
+});
 
 </script>
 </html>

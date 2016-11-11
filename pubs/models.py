@@ -8,13 +8,14 @@ from django.utils import timezone
 class Rating(models.Model):
     user = models.ForeignKey(User) #letaroljuk, hogy ki adat hozza, vagy anonim?
     price = models.IntegerField() #siman ft-ban egyenlore
-    feeling = models.CharField(max_length = 10) #regexp arra, hogy kesdobalo//bulizos//beszelgetos
-
+    feeling = models.CharField(max_length = 10, blank=True) #regexp arra, hogy kesdobalo//bulizos//beszelgetos
+    status = models.CharField(max_length=10, default ="pending")
 class Pub(models.Model):
     approvation = models.CharField(max_length = 10, default="pending")
     name = models.CharField(max_length = 150)
     position = GeopositionField()
-    ratings = ManyToManyField(Rating)
+    ratings = ManyToManyField(Rating, blank=True)
+    objects = models.Manager() # The default manager.
 
 class Checkin(models.Model):
     user = models.ForeignKey(User)

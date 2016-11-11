@@ -20,10 +20,13 @@ $.when(getCurrentPosition()).then(function(data, textStatus, jqXHR) {
 	    	},
 	    success: function (result) {
 	      //console.log("OK");
+	      var newAddANewPubSuccesMessage = $('<div id="addANewPubSuccesMessage"></div>')
 	      $('#addANewPubForm').hide();
 	      $('#addANewPubButton').hide();
-	      $('#newPubModal').append('<h4 style="color:green">You have successfully added a new pub! The admins will check it\'s validity, and then it will appear in the system. Thanks :)</h4> ');
-	      }
+	      newAddANewPubSuccesMessage.append('<div align="center"><i style="color:#5CB85C" class="fa fa-check-circle-o fa-5x" aria-hidden="true"></i></div><br/>')
+	      newAddANewPubSuccesMessage.append('<p style="color:#5CB85C"><strong>You have successfully added a new pub! The admins will check it\'s validity, and then it will appear in the system. Thanks :)</strong></p> ');
+	      $('#addANewPubSuccesMessage').replaceWith(newAddANewPubSuccesMessage);
+	    }
 	});	
 
 });

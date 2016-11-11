@@ -61,7 +61,7 @@
 	      <div id="addANewPubSuccesMessage"></div>	
 	      </div>
 	      <div class="modal-footer">      
-	      <button type="button" form= "addANewPub" id="addANewPubButton" onclick="postCurrentPosition()" class="btn btn-primary">Add</button>
+	      <button type="submit" form= "addANewPubForm" id="addANewPubButton" onclick="postCurrentPositionAsAPub()" class="btn btn-primary">Add</button>
 	      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>	        
 	      </div>
 	    </div>
@@ -106,17 +106,19 @@
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBX9dRii8oC28l1h6GIZTvPt8nJYrYamAQ"></script>
 		<script src="{%static 'js/handleLocationError.js' %}"></script>
 		<script src="{%static 'js/getCurrentPosition.js' %}"></script>
-		<script src="{%static 'js/postCurrentPosition.js' %}"></script>		
+		<script src="{%static 'js/postCurrentPositionAsAPub.js' %}"></script>		
 		{% block script_block %} {% endblock %}
 	</body>
 <script>
 
 $('#addANewPubModal').on('hidden.bs.modal', function () {
-	console.log("YOOOOOOOOOOO");
 	$('#addANewPubSuccesMessage').hide();
 	$('#addANewPubForm').find("input[type=text], textarea").val("");
 	$('#addANewPubForm').show();
-})
+});
+
+
+
 
 </script>
 </html>

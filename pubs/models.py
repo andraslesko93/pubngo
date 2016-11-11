@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.db.models.fields.related import ManyToManyField
 from geoposition.fields import GeopositionField
+from django.utils import timezone
 
 class Rating(models.Model):
     user = models.ForeignKey(User) #letaroljuk, hogy ki adat hozza, vagy anonim?
@@ -15,10 +16,10 @@ class Pub(models.Model):
     position = GeopositionField()
     ratings = ManyToManyField(Rating)
 
-class Checkins(models.Model):
+class Checkin(models.Model):
     user = models.ForeignKey(User)
     pub = models.ForeignKey(Pub)
-    time = models.DateTimeField(blank = True, null=True)
+    time = models.DateTimeField(default = timezone.now)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)

@@ -14,8 +14,9 @@ def get_nearby_pubs(request):
     one_hour_before=current_time-timedelta(seconds=60)
     #real:
     #one_hour_before=current_time-timedelta(seconds=3600)
-    checkins = Checkin.objects.filter(user=request.user, time__gte=one_hour_before)
+    checkins = Checkin.objects.filter(user=request.user, timestamp__gte=one_hour_before)
     pubs=Pub.objects.all()
+    #Should filter to approved pubs before release
     if (checkins.count()>0):
         pubs = pubs.filter(~Q(pk__in=checkins.values('pub')))
     json_list = []

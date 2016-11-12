@@ -1,4 +1,4 @@
-from pubs.models import Pub, Checkin
+from pubs.models import Pub, Checkin, Rating
 from geoposition import Geoposition
 from django.http.response import HttpResponse
 def post_current_position_as_a_pub(request):
@@ -15,8 +15,10 @@ def post_current_position_as_a_pub(request):
         position =Geoposition(latitude=lat, longitude=lng)
         pub = Pub(name=pub_name, position=position)
         pub.save()
-        #checkin= Checkin(user=request.user, pub=pub)
-        #checkin.save()
+        checkin= Checkin(user=request.user, pub=pub)
+        checkin.save()
+        rating = Rating(user=request.user, pub=pub)
+        rating.save()
         #Not the best solution for httpresponse but it works
         return HttpResponse("200")
     return HttpResponse(status=204)

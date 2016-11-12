@@ -7,8 +7,8 @@ def post_checkin(request):
         pub = get_object_or_404(Pub, pk=pk)
         checkin=Checkin(user=request.user, pub=pub)
         checkin.save()
-        #rating = Rating(user=request.user, pub=pub)
-        #rating.save()
+        rating = Rating(user=request.user, pub=pub)
+        rating.save()
         #Not the best solution for httpresponse but it works
         return HttpResponse("200")
     return HttpResponse(status=204)

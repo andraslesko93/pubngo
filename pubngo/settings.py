@@ -67,6 +67,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "pubs.context_processors.rating_number_counter",
+                "pubs.context_processors.switch_rating_status",
             ],
         },
     },
@@ -112,25 +114,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
-
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.contrib.auth.context_processors.auth",
-    "django.contrib.messages.context_processors.messages",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.static",
-    "django.core.context_processors.media",
-    "django.core.context_processors.request",
-    "django.core.context_processors.tz",
-    "problems.context_processors.daily_repu_out",
-    "problems.context_processors.rating_number_counter",
-    "problems.context_processors.notifications",
-    "problems.context_processors.switch_rating_status",
-    "problems.context_processors.tag_cloud",
-    'social.apps.django_app.context_processors.backends',
-    'social.apps.django_app.context_processors.login_redirect',
-)
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',

@@ -4,7 +4,6 @@ from views import get_pubs_by_preferences, post_current_position_as_a_pub, disco
 from django.conf import settings
 from pubs.views.get_nearby_pubs import get_nearby_pubs
 from pubs.views.post_checkin import post_checkin
-from pubs.views.get_checkins import get_checkins
 
 
 urlpatterns = patterns('',
@@ -12,7 +11,6 @@ urlpatterns = patterns('',
     url(r'^recommender/$', get_pubs_by_preferences, name='discover'),
     url(r'^post_current_position_as_a_pub/', post_current_position_as_a_pub, name='post_current_position'),
     url(r'^post_checkin/$', post_checkin, name='post_checkin'),
-    url(r'^get_checkins/$', get_checkins, name='get_checkins'),
     url(r'^get_nearby_pubs/$', get_nearby_pubs, name='get_nearby_pubs'),
     url(r'^discover/$', discover, name='discover'),
     url(r'^register/$', register, name='register'),

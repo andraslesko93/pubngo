@@ -6,7 +6,7 @@ from geoposition.fields import GeopositionField
 from django.utils import timezone
 
 class Rating(models.Model):
-    user = models.ForeignKey(User) #letaroljuk, hogy ki adat hozza, vagy anonim?
+    user = models.ForeignKey(User) 
     price = models.IntegerField() #siman ft-ban egyenlore
     feeling = models.CharField(max_length = 10, blank=True) #regexp arra, hogy kesdobalo//bulizos//beszelgetos
     status = models.CharField(max_length=10, default ="pending")
@@ -39,7 +39,6 @@ class UserProfile(models.Model):
 class UserPreferences(models.Model):
     #Ajanlorendszerhez, ez alapjan listaz
     user = models.OneToOneField(User)
-    distance_importance = models.IntegerField() #mennyire fontos h kozel legyen
-    price_importance = models.IntegerField() #mennyire fontos, hogy olcso legyen
+    max_distance = models.IntegerField()
+    max_price = models.IntegerField() #
     feeling = models.CharField(max_length = 10) #regexp arra, hogy kesdobalo//bulizos//beszelgetos ---> Akar Mihez van kedved ma este? 
-    #Feeling szuresi feltetel lesz, tobbi ertek alapja vmi pref matrixot szamol

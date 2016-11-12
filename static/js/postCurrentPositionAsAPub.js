@@ -31,7 +31,7 @@ $.when(getCurrentPosition()).then(function(data, textStatus, jqXHR) {
 	      $('#addANewPubForm').hide();
 	      $('#addANewPubButton').hide();
 	      newAddANewPubSuccesMessage.append('<div align="center"><i style="color:#5CB85C" class="fa fa-check-circle-o fa-5x" aria-hidden="true"></i></div><br/>')
-	      newAddANewPubSuccesMessage.append('<p style="color:#5CB85C"><strong>You have successfully added a new pub! The admins will check it\'s validity, and then it will appear in the system. Thanks :)</strong></p> ');
+	      newAddANewPubSuccesMessage.append('<p align="center" style="color:#5CB85C"><strong>You have successfully added a new pub! The admins will check it\'s validity, and then it will appear in the system. Thanks :)</strong></p> ');
 	      $('#addANewPubSuccesMessage').replaceWith(newAddANewPubSuccesMessage);
 	    }
 	});	

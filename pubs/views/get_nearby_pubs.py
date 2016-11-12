@@ -1,13 +1,23 @@
 from django.http.response import HttpResponse
-from pubs.models import Pub
+from pubs.models import Pub, Checkin
 import json
 from pubs.get_disctance import get_distance
 from django.utils.html import escape
+from django.utils import timezone
+from datetime import timedelta
+from django.db.models import Q
 def get_nearby_pubs(request):
-    print "------------------tiggered---------------"
     lat = request.GET.get('lat', '')
     lng = request.GET.get('lng', '')
-    pubs = Pub.objects.all()
+    current_time = (timezone.now())
+    #for debug:
+    one_hour_before=current_time-timedelta(seconds=60)
+    #real:
+    #one_hour_before=current_time-timedelta(seconds=3600)
+    checkins = Checkin.objects.filter(user=request.user, time__gte=one_hour_before)
+    pubs=Pub.objects.all()
+    if (checkins.count()>0):
+        pubs = pubs.filter(~Q(pk__in=checkins.values('pub')))
     json_list = []
     for pub in pubs:
         distance = get_distance(float(lng), float(lat), pub.position.longitude, pub.position.latitude)

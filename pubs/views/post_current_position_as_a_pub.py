@@ -15,8 +15,8 @@ def post_current_position_as_a_pub(request):
         position =Geoposition(latitude=lat, longitude=lng)
         pub = Pub(name=pub_name, position=position)
         pub.save()
-        checkin= Checkin(user=request.user, pub=pub)
-        checkin.save()
+        #checkin= Checkin(user=request.user, pub=pub)
+        #checkin.save()
         #Not the best solution for httpresponse but it works
         return HttpResponse("200")
     return HttpResponse(status=204)

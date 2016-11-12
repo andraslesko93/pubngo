@@ -12,15 +12,20 @@ function getNearbyPubs()
 		    		'lng':data.coords.longitude,
 		    	},
 		    success: function (result){
-		    	//console.log("aight");
-		    	//console.log(result);
 		    	var newCheckinList = $('<div class="list-group" id="checkinList"></div>')
-		    	$.each(result, function(i, obj)
-		    	{
-		    		var name= obj.pubName;
-		    		var key = obj.key;
-		    		newCheckinList.append('<a href="#" class="list-group-item" onclick="postCheckin('+key+','+'\''+name+'\')">'+name+'</a>');
-		    	});
+		    	if( result.length == 0 ) {
+		    		newCheckinList.append('<div align="center"><i style="color:#F0AD4E" class="fa fa-frown-o fa-5x" aria-hidden="true"></i>').append(newCheckinList);
+		    		newCheckinList.append('<p align="center" style="color:#F0AD4E"><strong>There are pubs arround, or you have checked into all of them.</strong></p>').append(newCheckinList);
+		    	}
+		    	else{
+		  	      	newCheckinList.append('<h4 id="checkinTitle">Choose from the nearby pubs: </h4>');
+			    	$.each(result, function(i, obj)
+			    	{
+			    		var name= obj.pubName;
+			    		var key = obj.key;
+			    		newCheckinList.append('<a href="#" class="list-group-item" onclick="postCheckin('+key+','+'\''+name+'\')">'+name+'</a>');
+			    	});
+		    	}
 		    	$('#checkinList').replaceWith(newCheckinList);
 		    }
 		});

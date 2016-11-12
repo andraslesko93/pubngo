@@ -13,7 +13,6 @@ function postCheckin(key, name)
 	    success: function () {
 	      var newCheckinSuccesMessage = $('<div id="checkinSuccesMessage"></div>')
 	      $('#checkinList').hide();
-	      $('#checkinTitle').hide();
 	      newCheckinSuccesMessage.append('<div align="center"><i style="color:#5CB85C" class="fa fa-check-circle-o fa-5x" aria-hidden="true"></i></div><br/>')
 	      newCheckinSuccesMessage.append('<p style="color:#5CB85C" align="center"><strong>You have successfully checked into: '+name+'.</strong></p> ');
 	      $('#checkinSuccesMessage').replaceWith(newCheckinSuccesMessage);

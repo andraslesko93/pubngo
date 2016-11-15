@@ -26,7 +26,7 @@ def get_nearby_pubs(request):
         if(distance < 0.05):
             print pub.name
             json_list.append({
-                          'pubName': str(pub.name),
+                          'pubName': pub.name,
                           'key':pub.pk
             }) 
     for json_list_element in json_list:

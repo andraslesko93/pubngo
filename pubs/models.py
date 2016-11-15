@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
-from django.db.models.fields.related import ManyToManyField
 from geoposition.fields import GeopositionField
 from django.utils import timezone
 
@@ -9,8 +8,7 @@ class Pub(models.Model):
     approvation = models.CharField(max_length = 10, default="pending")
     name = models.CharField(max_length = 150)
     position = GeopositionField()
-    objects = models.Manager() # The default manager.
-
+    #objects = models.Manager() # The default manager.
 class Rating(models.Model):
     user = models.ForeignKey(User, blank=True) 
     pub = models.ForeignKey(Pub, blank=True)

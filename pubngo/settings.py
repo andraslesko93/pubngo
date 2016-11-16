@@ -15,12 +15,12 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-WSGI_APPLICATION = 'pubngo.wsgi.application'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'lwr0pqf*=*0$ug595j#mtp!oz(57!fyb09o$pm1&p7b113hly6'
+SECRET_KEY = 'v2gk*namde518tzh_bfi_nhpnnv5k4yn!(liu1icwhq7jgq*9_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,9 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pubs',
     'social.apps.django_app.default',
-    'geoposition'
+    'pubs',
+    'geoposition',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,7 +51,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-
 )
 
 ROOT_URLCONF = 'pubngo.urls'
@@ -74,6 +73,7 @@ TEMPLATES = [
     },
 ]
 
+WSGI_APPLICATION = 'pubngo.wsgi.application'
 
 
 # Database

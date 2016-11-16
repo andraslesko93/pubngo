@@ -22,7 +22,6 @@ function getRatings()
 	    	if( result.length == 0 ) {
 	    		newRatingList.append('<div align="center"><i style="color:#5CB85C" class="fa fa-check-circle-o fa-5x" aria-hidden="true"></i>');
 	    		newRatingList.append('<p align="center" style="color:#5CB85C"><strong>You don\'t have to rate any pubs now. :).</strong></p>');
-	    		console.log("faszombamár");
 	    	}
 	    	else{
 		    	$.each(result, function(i, obj)
@@ -39,7 +38,6 @@ function getRatings()
 		    		
 			    	$.each(feelings, function(i, obj){
 			    		$('<option value="'+feelings[i]+'">'+feelings[i]+'</option>').appendTo(selectInput);
-			    		//console.log(feelings[i]);
 			    	});
 		    		selectInput.appendTo(div);
 	

@@ -10,7 +10,8 @@ def get_ratings(request):
         for pending_rating in pending_ratings:
             print pending_rating.pk
             json_list.append({
-                'key': pending_rating.pk
+                'key': pending_rating.pk,
+                'pubName': pending_rating.pub.name
             })
             print json_list
         for json_list_element in json_list:

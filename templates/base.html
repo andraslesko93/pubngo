@@ -36,7 +36,7 @@
         <li><a href="" data-toggle="modal" data-target="#ratingModal" onclick="getRatings()">
         	<i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>
         	{% if pending_rating_count%}
-        		<small><span class="label label-danger">{{pending_rating_count}}</span></small>
+        		<small><span class="label label-danger" id =ratingCounter>{{pending_rating_count}}</span></small>
         	{%endif%}
         </a></li>
         <li>&nbsp;</li>        
@@ -103,7 +103,6 @@
 	      </div>
 	      <div class="modal-body">
 	        <div id="ratingList"></div>
-	      	<div id="ratingSuccesMessage"></div>
 	      </div>
 	      <div class="modal-footer">      
 		      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>	        
@@ -125,6 +124,7 @@
 		<script src="{%static 'js/getNearbyPubs.js' %}"></script>
 		<script src="{%static 'js/postCheckin.js' %}"></script>
 		<script src="{%static 'js/getRatings.js' %}"></script>
+		<script src="{%static 'js/postRating.js' %}"></script>
 		{% block script_block %} {% endblock %}
 	</body>
 <script>

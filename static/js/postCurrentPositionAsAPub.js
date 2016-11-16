@@ -26,7 +26,7 @@ $.when(getCurrentPosition()).then(function(data, textStatus, jqXHR) {
 	    	'pubName': formValues.pubName
 	    	},
 	    success: function () {
-	      //console.log("OK");
+	      console.log("OKika nigeer");
 	      var newAddANewPubSuccesMessage = $('<div id="addANewPubSuccesMessage"></div>')
 	      $('#addANewPubForm').hide();
 	      $('#addANewPubButton').hide();
@@ -34,7 +34,6 @@ $.when(getCurrentPosition()).then(function(data, textStatus, jqXHR) {
 	      newAddANewPubSuccesMessage.append('<p align="center" style="color:#5CB85C"><strong>You have successfully added a new pub! The admins will check it\'s validity, and then it will appear in the system. Thanks :)</strong></p> ');
 	      $('#addANewPubSuccesMessage').replaceWith(newAddANewPubSuccesMessage);
 	    }
-	});	
-
+	});
 });
 }

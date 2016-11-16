@@ -6,6 +6,7 @@ from pubs.views.get_nearby_pubs import get_nearby_pubs
 from pubs.views.post_checkin import post_checkin
 from pubs.views.post_rating import post_rating
 from pubs.views.get_ratings import get_ratings
+from pubs.views.get_pub_feelings import get_pub_feelings
 
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name="pubs/index.html"), name='index'),
@@ -19,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^register/$', register, name='register'),
     url(r'^login/$', user_login, name='login'),
     url(r'^logout/$', user_logout, name='logout'),
+    url(r'^get_pub_feelings/$', get_pub_feelings, name='logout'),
     url(r'^terms_of_use/$', TemplateView.as_view(template_name="pubs/terms_of_use.html"), name='terms_of_use'),
     )
 

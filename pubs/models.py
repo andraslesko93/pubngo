@@ -5,16 +5,16 @@ from geoposition.fields import GeopositionField
 from django.utils import timezone
 
 class Pub(models.Model):
-    approvation = models.CharField(max_length = 10, default="pending")
+    approvation = models.CharField(max_length = 10, default="pending") #values: "pending", or "approved"
     name = models.CharField(max_length = 150)
     position = GeopositionField()
     #objects = models.Manager() # The default manager.
 class Rating(models.Model):
     user = models.ForeignKey(User, blank=True) 
     pub = models.ForeignKey(Pub, blank=True)
-    price = models.IntegerField(null=True, blank=True) #siman ft-ban egyenlore
-    feeling = models.CharField(max_length = 10, blank=True) #regexp arra, hogy kesdobalo//bulizos//beszelgetos
-    status = models.CharField(max_length=10, default ="waiting")
+    price = models.IntegerField(null=True, blank=True) #values in HuF
+    feeling = models.CharField(max_length = 10, blank=True)
+    status = models.CharField(max_length=10, default ="waiting")# values:"waiting", "pending", or "rated" 
     timestamp = models.DateTimeField(default = timezone.now)
 
 class Checkin(models.Model):
@@ -41,4 +41,4 @@ class UserPreferences(models.Model):
     user = models.OneToOneField(User)
     max_distance = models.IntegerField()
     max_price = models.IntegerField() #
-    feeling = models.CharField(max_length = 10) #regexp arra, hogy kesdobalo//bulizos//beszelgetos ---> Akar Mihez van kedved ma este? 
+    feeling = models.CharField(max_length = 10)  

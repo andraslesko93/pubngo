@@ -24,7 +24,7 @@ def get_nearby_pubs(request):
         distance = get_distance(float(lng), float(lat), pub.position.longitude, pub.position.latitude)
         #pubs in 50m range
         if(distance < 0.05):
-            print pub.name
+            #print pub.name
             json_list.append({
                           'pubName': pub.name,
                           'key':pub.pk

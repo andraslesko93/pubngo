@@ -27,6 +27,10 @@ function postRating(ratingKey, name)
 	    	var pendingRatingCounter = $('#ratingCounter').html();
 	    	pendingRatingCounter = parseInt(pendingRatingCounter);
 	    	pendingRatingCounter= pendingRatingCounter -1;
+	    	if (pendingRatingCounter == 0)
+	    		{
+	    		$('#ratingCounter').hide();
+	    		}
 	    	$('#ratingCounter').html(pendingRatingCounter);
 			var newRatingDiv = $('<div id="ratingDiv-'+ratingKey+'" ></div>');
 	    	newRatingDiv.append('<div align="center"><i style="color:#5CB85C" class="fa fa-check-circle-o fa-5x" aria-hidden="true"></i></div><br/>')

@@ -34,7 +34,7 @@
         <li><a href="" data-toggle="modal" onclick="getNearbyPubs()" data-target="#checkInModal">Check-in</a></li>
 		<li><a href="" data-toggle="modal" data-target="#addANewPubModal">Add a new pub</a></li>
         <li><a href="" data-toggle="modal" data-target="#ratingModal" onclick="getRatings()">
-        	<i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>
+        	Ratings
         	{% if pending_rating_count%}
         		<small><span class="label label-danger" id =ratingCounter>{{pending_rating_count}}</span></small>
         	{%endif%}

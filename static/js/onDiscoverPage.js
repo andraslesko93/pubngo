@@ -10,6 +10,8 @@ var myOptions = {
 	mapTypeId: google.maps.MapTypeId.ROADMAP,
 	mapTypeControl: false
 };
+
+var gmarkers;
 var map = new google.maps.Map(document.getElementById("map_canvas_discover"),myOptions);
 var infoWindow = new google.maps.InfoWindow(); 
 var marker, i;
@@ -30,20 +32,31 @@ for (i = 0; i < markers.length; i++) {
 }
 map.fitBounds(bounds);
 
-var infoWindow = new google.maps.InfoWindow({map: map});
-
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Location found.');
-      map.setCenter(pos);
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
-    });
+var id;
+var userMarker;
+if (navigator.geolocation) {	
+	id = navigator.geolocation.watchPosition(function(position) {
+    var pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+    var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+    var myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    if (!userMarker) {
+    	userMarker = new google.maps.Marker({
+    	    position: myLatLng,
+    	    map: map,
+    	    icon: im
+    	});
+    	map.setCenter(pos);
+    } else {
+    	userMarker.setPosition(myLatLng);
+    }
+  
+    
+  }, function() {
+    handleLocationError(true, infoWindow, map.getCenter());
+  });
   } else {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());

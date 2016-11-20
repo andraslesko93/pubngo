@@ -26,7 +26,6 @@ $.when(getCurrentPosition()).then(function(data, textStatus, jqXHR) {
 	    	'pubName': formValues.pubName
 	    	},
 	    success: function () {
-	      console.log("OKika nigeer");
 	      var newAddANewPubSuccesMessage = $('<div id="addANewPubSuccesMessage"></div>')
 	      $('#addANewPubForm').hide();
 	      $('#addANewPubButton').hide();

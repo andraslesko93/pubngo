@@ -15,13 +15,15 @@ var gmarkers;
 var map = new google.maps.Map(document.getElementById("map_canvas_discover"),myOptions);
 var infoWindow = new google.maps.InfoWindow(); 
 var marker, i;
+var beer = '/media/beer_pin.png'
 var bounds = new google.maps.LatLngBounds();
 for (i = 0; i < markers.length; i++) { 
 	var pos = new google.maps.LatLng(markers[i][1], markers[i][2]);
 	bounds.extend(pos);
 	marker = new google.maps.Marker({
 		position: pos,
-		map: map
+		map: map,
+		icon: beer
 	});
 	google.maps.event.addListener(marker, 'click', (function(marker, i) {
 		return function() {
@@ -34,30 +36,33 @@ map.fitBounds(bounds);
 
 var id;
 var userMarker;
-if (navigator.geolocation) {	
-	id = navigator.geolocation.watchPosition(function(position) {
-    var pos = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-    };
-    var im = 'https://www.robotwoods.com/dev/misc/bluecircle.png';
-    var myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    if (!userMarker) {
-    	userMarker = new google.maps.Marker({
-    	    position: myLatLng,
-    	    map: map,
-    	    icon: im
-    	});
-    	map.setCenter(pos);
-    } else {
-    	userMarker.setPosition(myLatLng);
-    }
-  
-    
-  }, function() {
-    handleLocationError(true, infoWindow, map.getCenter());
-  });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
+if (navigator.geolocation) {
+	options = {
+			  enableHighAccuracy: false,
+			  timeout: 5000,
+			  maximumAge: 1000
+	};
+	id = navigator.geolocation.watchPosition(
+		function(position) {
+			var im = '/media/bluecircle.png';
+			var myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			if (!userMarker) {
+				userMarker = new google.maps.Marker({
+					position: myLatLng,
+					map: map,
+					icon: im
+				});
+				map.setCenter(myLatLng);
+			} else {
+				userMarker.setPosition(myLatLng);
+			}
+	    }, 
+	    function() {
+	    	handleLocationError(true, infoWindow, map.getCenter());
+	    }, 
+	    options
+	);
+} else {
+  // Browser doesn't support Geolocation
+  handleLocationError(false, infoWindow, map.getCenter());
+}

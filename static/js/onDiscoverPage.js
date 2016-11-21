@@ -40,7 +40,7 @@ if (navigator.geolocation) {
       lat: position.coords.latitude,
       lng: position.coords.longitude
     };
-    var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+    var im = 'https://www.robotwoods.com/dev/misc/bluecircle.png';
     var myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     if (!userMarker) {
     	userMarker = new google.maps.Marker({

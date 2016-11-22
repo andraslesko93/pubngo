@@ -51,9 +51,7 @@ function getAllPubs()
 	});
 }
 
-var GeoMarker = new GeolocationMarker(map);
-
-/*if (navigator.geolocation) {
+if (navigator.geolocation) {
 	options = {
 			  enableHighAccuracy: false,
 			  timeout: 5000,
@@ -82,4 +80,4 @@ var GeoMarker = new GeolocationMarker(map);
 } else {
   // Browser doesn't support Geolocation
   //handleLocationError(false, infoWindow, map.getCenter());
-}*/
+}

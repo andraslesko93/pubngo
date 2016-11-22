@@ -1,41 +1,58 @@
-var markers = [
-	['Baráti kávézó', 47.5042817, 19.064201799999978],
-	['Gong café', 47.4993127, 19.07003450000002],
-	['Bölcső bar & food', 47.4772765, 19.05395390000001],
-	['Andersen pub', 47.4904009, 19.069585899999993],
-	['Ördög gödör', 47.5008524, 19.06876890000001],
-];
-	
 var myOptions = {
 	mapTypeId: google.maps.MapTypeId.ROADMAP,
 	mapTypeControl: false
 };
 
-var gmarkers;
-var map = new google.maps.Map(document.getElementById("map_canvas_discover"),myOptions);
+var map = new google.maps.Map(document.getElementById("map_canvas_discover"), myOptions);
 var infoWindow = new google.maps.InfoWindow(); 
 var marker, i;
 var beer = '/media/beer_pin.png'
+var blue_dot = '/media/bluecircle.png';
 var bounds = new google.maps.LatLngBounds();
-for (i = 0; i < markers.length; i++) { 
-	var pos = new google.maps.LatLng(markers[i][1], markers[i][2]);
-	bounds.extend(pos);
-	marker = new google.maps.Marker({
-		position: pos,
-		map: map,
-		icon: beer
-	});
-	google.maps.event.addListener(marker, 'click', (function(marker, i) {
-		return function() {
-			infoWindow.setContent(markers[i][0]);
-			infoWindow.open(map, marker);
-		}
-	})(marker, i));
-}
-map.fitBounds(bounds);
+
 
 var id;
 var userMarker;
+
+getAllPubs();
+
+function getAllPubs()
+{
+	var pubs2=[];
+	$.ajax({
+		type: 'GET',
+		url: "/get_all_pubs/",
+		dataType: "json",
+		success: function (result){		
+			var pubs = [];
+		   	$.each(result, function(i, obj)
+		   	{
+		   		var temp = [obj.pubName, obj.lat, obj.lng];
+		   		pubs.push(temp);
+		   	});
+		
+		   	for (i = 0; i < pubs.length; i++) { 
+		   		var pos = new google.maps.LatLng(pubs[i][1], pubs[i][2]);
+		   		bounds.extend(pos);
+		   		marker = new google.maps.Marker({
+		   			position: pos,
+		   			map: map,
+		   			icon: beer
+		   		});
+		   		google.maps.event.addListener(marker, 'click', (function(marker, i) {
+		   			return function() {
+		   				infoWindow.setContent(pubs[i][0]);
+		   				infoWindow.open(map, marker);
+		   			}
+		   		})(marker, i));
+		   	}
+		   	map.fitBounds(bounds);		   	
+		 }
+	});
+}
+
+
+
 if (navigator.geolocation) {
 	options = {
 			  enableHighAccuracy: false,
@@ -44,13 +61,13 @@ if (navigator.geolocation) {
 	};
 	id = navigator.geolocation.watchPosition(
 		function(position) {
-			var im = '/media/bluecircle.png';
+			
 			var myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 			if (!userMarker) {
 				userMarker = new google.maps.Marker({
 					position: myLatLng,
 					map: map,
-					icon: im
+					icon: blue_dot
 				});
 				map.setCenter(myLatLng);
 			} else {
@@ -58,11 +75,11 @@ if (navigator.geolocation) {
 			}
 	    }, 
 	    function() {
-	    	handleLocationError(true, infoWindow, map.getCenter());
+	    	//handleLocationError(true, infoWindow, map.getCenter());
 	    }, 
 	    options
 	);
 } else {
   // Browser doesn't support Geolocation
-  handleLocationError(false, infoWindow, map.getCenter());
+  //handleLocationError(false, infoWindow, map.getCenter());
 }

@@ -3,36 +3,81 @@
 {% load staticfiles %}
 {% block clear_block %}
 {%if user.is_authenticated == False%}
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-	<div class ="col-xs-12" align = "center">
-	<h2>Welcome PubNGo!</h2>
-	<h2>Please <a href='/login' >login</a> or <a href='/register' >register</a></h2>
-	<h2>Or login with <a href = '{% url 'social:begin' 'facebook' %}?next={{ request.path }}'>Facebook</a></h2>
+<div class="col-xs-12" align="center">
+    <h2>Welcome PubNGo!</h2>
+    <h2>Please <a href='/login'>login</a> or <a href='/register'>register</a></h2>
+    <h2>Or login with <a href='{% url ' social:begin' 'facebook' %}?next={{ request.path }}'>Facebook</a></h2>
 
-</div>	
+</div>
 {%endif%}
 {% endblock %}
 
 {%if user.is_authenticated %}
 {% block body_block %}
-	<div class="col-xs-12" align="center">
-		 <h4>Welcome {{user.username}}!</h4>
-		{% if user.userprofile.picture_url %}
-					<img src="{{user.userprofile.picture_url}}" height=85/>
-					<br/><br/>
-		{% endif %}
-		
-		<h4>Please tell us what kind of pub are looking for:</h4>
-		<p>
-		Todo: Create a set user preferences form here. (Prefer ajax call)
-		<br/> 
-		Your waiting ratings: {{waiting_rating_count}} <br/>
-		Your pending ratings: {{pending_rating_count}}
-		</p>
-		<a href="/logout/">Logout
-			<i class="fa fa-sign-out"></i>  
-		</a> 
-		<br/><br/>   
-	</div>
+<div class="col-xs-12" align="center">
+    <div class="row">
+        <h4>Welcome {{user.username}}!</h4>
+        {% if user.userprofile.picture_url %}
+        <img src="{{user.userprofile.picture_url}}" height=85/>
+        <br/><br/>
+        {% endif %}
+
+        <h4>Please tell us what kind of pub are looking for:</h4>
+
+        <p>
+            <button id="btn1" type="button" class="btn btn-default" onclick="changeClass(this.id)">Ghetto pub</button>
+            <button id="btn2" type="button" class="btn btn-primary" onclick="changeClass(this.id)">Bar for a chat</button>
+            <button id="btn3" type="button" class="btn btn-default" onclick="changeClass(this.id)">Tavern</button>
+            <button id="btn4" type="button" class="btn btn-primary" onclick="changeClass(this.id)">Club</button>
+            <button id="btn5" type="button" class="btn btn-default" onclick="changeClass(this.id)">Ruin bar</button>
+
+            <script type="text/javascript">
+                function changeClass(clicker_id){
+                    if ( document.getElementById(clicker_id).className.match(/(?:^|\s)btn-default(?!\S)/) ){
+                        document.getElementById(clicker_id).className = "btn btn-primary";
+                    } else {
+                        document.getElementById(clicker_id).className = "btn btn-default";
+                    }
+                }
+            </script>
+
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-md-4"></div>
+        <div class="col-xs-6 col-md-4">
+            <h4>Preferred maximum beer-prize:</h4>
+            <input type="range" min="100" max="2000" value="200" step="200"
+                   onchange="showValue(this.value)"
+                   width="30%!important"/>
+            <span id="range">200 Forint</span>
+            <script type="text/javascript">
+            function showValue(newValue)
+            {
+	            document.getElementById("range").innerHTML=newValue + " Forint";
+            }
+            </script>
+        </div>
+        <div class="col-xs-6 col-md-4"></div>
+
+    </div>
+
+
+    <!--Todo: Create a set user preferences form here. (Prefer ajax call)-->
+    <br/>
+    Your waiting ratings: {{waiting_rating_count}} <br/>
+    Your pending ratings: {{pending_rating_count}}
+    </p>
+
+
+    <a href="/logout/">Logout
+        <i class="fa fa-sign-out"></i>
+    </a>
+    <br/><br/>
+
+</div>
 {% endblock %}
 {% endif %}

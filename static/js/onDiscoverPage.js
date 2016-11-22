@@ -54,7 +54,6 @@ function getAllPubs()
 if (navigator.geolocation) {
 	options = {
 			  enableHighAccuracy: false,
-			  timeout: 5000,
 			  maximumAge: 1000
 	};
 	id = navigator.geolocation.watchPosition(

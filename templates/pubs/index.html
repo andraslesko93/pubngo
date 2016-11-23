@@ -18,18 +18,21 @@
 {% block body_block %}
 <div class="col-xs-12" align="center">
     <div class="row">
-        <h4>Welcome {{user.username}}!</h4>
+        <h3>Welcome {{user.username}}!</h3>
         {% if user.userprofile.picture_url %}
         <img src="{{user.userprofile.picture_url}}" height=85/>
         <br/><br/>
         {% endif %}
 
         <h4>Please tell us what kind of pub are looking for:</h4>
-
+		<br>
         <p>
             <button id="btn2" type="button" class="btn btn-primary" onclick="changeClass(this.id)">Quiet pub for talking</button>
+
             <button id="btn3" type="button" class="btn btn-default" onclick="changeClass(this.id)">Ruinpub</button>
-            <button id="btn4" type="button" class="btn btn-primary" onclick="changeClass(this.id)">Party pub</button>
+
+            <button id="btn4" type="button" class="btn btn-default" onclick="changeClass(this.id)">Party pub</button>
+
             <button id="btn5" type="button" class="btn btn-default" onclick="changeClass(this.id)">Knife thrower</button>
 
             <script type="text/javascript">
@@ -46,21 +49,22 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-6 col-md-4"></div>
-        <div class="col-xs-6 col-md-4">
-            <h4>Preferred maximum beer price:</h4>
-            <input type="range" min="100" max="2000" value="200" step="200"
-                   onchange="showValue(this.value)"
-                   width="30%!important"/>
-            <span id="range">200 Forint</span>
-            <script type="text/javascript">
-            function showValue(newValue)
-            {
-	            document.getElementById("range").innerHTML=newValue + " Forint";
-            }
-            </script>
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4">
+        
+        	<p><strong>Preferred maximum distance:</strong></p>
+			<div class="range range-primary">
+					<input type="range" name = "distanceRange" id = "distanceRange" min="1" value="1" max="30" oninput="distanceRangeOutput.value = distanceRange.value+' km'">
+					<output name="distanceRangeOutput" id="distanceRangeOutput"> 1km</output>
+			</div>
+			<br>
+			<p><strong>Preferred maximum beer price:</strong></p>
+			<div class="range range-primary">
+					<input type="range" name = "beerRange" id = "beerRange" min="100" step="100" value="100" max="2000" oninput="beerRangeOutput.value = beerRange.value+' HuF'">
+					<output name="beerRangeOutput" id="beerRangeOutput"> 100 HuF</output>
+			</div>
         </div>
-        <div class="col-xs-6 col-md-4"></div>
+        <div class="col-xs-4"></div>
 
     </div>
 
